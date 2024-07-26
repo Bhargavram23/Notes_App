@@ -1,0 +1,47 @@
+<h1>Welcome to edit page </h1>
+<p th:text="${msg}" style="color: red;"></p>
+<form th:object="${task}" th:action="@{/taskUpdateSubmit}" method="post">
+	<div th:if="${#fields.hasAnyErrors()}">
+		<ul>
+			<li th:each="err : ${#fields.allErrors()}" th:text="${err}" style="color: red;" />
+		</ul>
+	</div>
+	<table>
+		<thead>
+			<th> Field</th>
+			<th> Value</th>
+		</thead>
+		<tr hidden>
+			<td> Task id</td>
+			<td><input type="text" th:field="*{id}"></td>
+		</tr>
+		<tr>
+			<td> Task title</td>
+			<td><input type="text" th:field="*{activityTitle}"></td>
+		</tr>
+		<tr>
+			<td> Task Message</td>
+			<td>
+				<textarea rows="5" placeholder="Enter your message here" th:field="*{activityMessage}"
+					required="required"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td> Task Status</td>
+			<td>
+				<select name="cars" id="cars" th:field="*{status}">
+					<option value="YET_TO_START" selected="selected">Yet to start</option>
+					<option value="IN_PROGRESS">In progress</option>
+					<option value="COMPLETED">Completed</option>
+
+				</select>
+			</td>
+
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td> <input type="submit"></td>
+
+		</tr>
+	</table>
+</form>

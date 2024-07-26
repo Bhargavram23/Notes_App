@@ -1,0 +1,32 @@
+<html>
+
+<y>
+
+	<h1><a href="addTask">Add task</a></h1>
+	<h3 th:text="${user.name}"></h3>
+	<h1>Viewing All tasks</h1>
+	<table border="1">
+		<tr th:each="task, iStat : ${taskList}">
+			<td th:text="${iStat.index+1}"></td>
+			<td th:text="${task.activityTitle}"></td>
+			<td th:text="${task.activityMessage}"></td>
+			<td th:text="${task.status}"></td>
+			<td>
+				<form method="POST" th:action="@{/edit(taskId=${task.id})}">
+					<button type="submit" name="edit" value="value">EDIT</button>
+				</form>
+			</td>
+			<td>
+				<form method="POST" th:action="@{/delete(taskId=${task.id})}">
+					<button type="submit" name="delete" value="value">DELETE</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<h1><a th:href="@{downloads/excel}">Download all tasks as Excel</a></h1>
+	<h1><a th:href="@{downloads/pdf}">Download all tasks as Pdf</a></h1>
+	<h1><a href="logout">logout</a></h1>
+	
+</body>
+
+</html>
